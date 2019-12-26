@@ -55,6 +55,16 @@ from logbook import Logger
 
 from threading import Thread
 import asyncio
+import os
+alpaca = tradeapi.REST(key_id=os.environ.get('PAPER_APCA_API_KEY_ID'),
+                       secret_key=os.environ.get('PAPER_APCA_API_SECRET_KEY'),
+                       base_url=os.environ.get('PAPER_APCA_API_BASE_URL'),
+                       api_version='v2')
+
+alpaca_live = tradeapi.REST(key_id=os.environ.get('APCA_API_KEY_ID'),
+                            secret_key=os.environ.get('APCA_API_SECRET_KEY'),
+                            base_url=os.environ.get('APCA_API_BASE_URL'),
+                            api_version='v2')
 
 log = Logger('Alpaca')
 
@@ -102,9 +112,7 @@ class Backend(BaseBackend):
         self._key_id = key_id
         self._secret = secret
         self._base_url = base_url
-        self._api = tradeapi.REST(
-            key_id, secret, base_url, api_version=api_version
-        )
+        self._api = alpaca
         self._cal = get_calendar('NYSE')
 
         self._open_orders = {}
