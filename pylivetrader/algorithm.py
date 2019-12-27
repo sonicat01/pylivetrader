@@ -816,10 +816,11 @@ class Algorithm(object):
         Calculates how many shares/contracts to order based on the type of
         asset being ordered.
         """
-        if not self.executor.current_data.can_trade(asset):
-            raise CannotOrderDelistedAsset(
-                msg="Cannot order {0}, as it not tradable".format(asset.symbol)
-            )
+        # Disable the tradble check
+        # if not self.executor.current_data.can_trade(asset):
+        #     raise CannotOrderDelistedAsset(
+        #         msg="Cannot order {0}, as it not tradable".format(asset.symbol)
+        #     )
 
         last_price = \
             self.executor.current_data.current(asset, "price")
