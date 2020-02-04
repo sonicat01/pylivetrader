@@ -112,7 +112,7 @@ class Backend(BaseBackend):
         self._key_id = key_id
         self._secret = secret
         self._base_url = base_url
-        self._api = alpaca
+        self._api = alpaca_live
         self._cal = get_calendar('NYSE')
 
         self._open_orders = {}
